@@ -39,7 +39,7 @@ public class Strategy9 implements Strategy{
 		// mamy jakąś figurę
 		if(variant!=Variant.NONE && variant!=Variant.PAIR){
 			// ile stawiamy: 1 / moc figury i nie mniej niż min
-			return minToBet + (maxToBet / (variant.ordinal() + 1));
+			return minToBet + ((maxToBet-minToBet) / (variant.ordinal() + 1));
 		}
 		
 		return 0;
