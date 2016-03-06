@@ -8,3 +8,9 @@ build
 .gradle
 .idea
 poker-player-java.iml
+/bin/
+/target/
+.classpath
+.project
+.settings
+pom.xml
