@@ -42,6 +42,7 @@ buildscript {
 dependencies {
     testCompile 'junit:junit:4.11'
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'org.assertj:assertj-core:3.3.0'
     def tomcatVersion = '7.0.11'
 
     providedCompile "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}"
