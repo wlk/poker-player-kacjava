@@ -14,14 +14,13 @@ public class Player {
 
 	public static int betRequest(JsonElement request) {
 
-        Strategy strategy = new Strategy1();
+        Strategy strategy = new ExceptionCatcherStrategy(new Strategy1());
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
                 .filter(game -> game.getMinimumRaise()>0)
                 .map(strategy::run)
                 .orElse(300);
-//		return new ExceptionCatcherStrategy(new Strategy1()).run(parseJson(request));
 	}
 
     public static int bet(GameStateDto game){

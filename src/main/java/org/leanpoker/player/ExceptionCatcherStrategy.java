@@ -14,8 +14,9 @@ public class ExceptionCatcherStrategy implements Strategy {
 	public ExceptionCatcherStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
+
 	@Override
-	public int run(Optional<GameStateDto> gameStateDto) {
+	public int run(GameStateDto gameStateDto) {
 		try{
 			return strategy.run(gameStateDto);
 		} catch (Exception e) {
