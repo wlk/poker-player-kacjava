@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Player {
 
-	static final String VERSION = "KacJava-" + 5;
+	static final String VERSION = "KacJava-" + 6;
 
     private static Gson gson = new Gson();
 
