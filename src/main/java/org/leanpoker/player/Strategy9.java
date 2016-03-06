@@ -22,7 +22,7 @@ public class Strategy9 implements Strategy{
 		if(isBlindPart(state)) {
 			if(containsParisOnHand(state)) {
 				//para na ręce
-				return minToBet;
+				return maxToBet / 2 > state.getCurrentBuyIn() ? maxToBet / 2: maxToBet;
 			} else if (state.getPlayerCards().stream()
 					.map(HoldCard::getRank)
 					.map(CardRank::findByValue)
@@ -31,7 +31,7 @@ public class Strategy9 implements Strategy{
 					.findFirst()
 					.isPresent()) {
 				// 10 lub wyższa na ręce
-				return minToBet;
+				state.getMinimumRaise();
 			} else {
 				return 0;
 			}
