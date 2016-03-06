@@ -15,7 +15,7 @@ public class Player {
 
 	public static int betRequest(JsonElement request) {
 
-        Strategy strategy = new ExceptionCatcherStrategy(new Strategy6());
+        Strategy strategy = new ExceptionCatcherStrategy(new Strategy7());
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
