@@ -8,7 +8,7 @@ public class StrategyDefault implements Strategy{
 
 	@Override
 	public int run(GameStateDto gameStateDto) {
-		return gameStateDto.getMinimumRaise();
+		return gameStateDto.getMinimumRaise()+1;
 	}
 
 }
