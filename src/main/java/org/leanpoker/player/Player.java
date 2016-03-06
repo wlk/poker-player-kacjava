@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class Player {
 
-	static final String VERSION = "KacJava-" + 3;
+	static final String VERSION = "KacJava-" + 5;
 
     private static Gson gson = new Gson();
 
@@ -22,12 +22,6 @@ public class Player {
                 .map(strategy::run)
                 .orElse(300);
 	}
-
-    public static int bet(GameStateDto game){
-        return game.getMinimumRaise();
-    }
-
-
 
     private static Optional<GameStateDto> parseJson(JsonElement request) {
         try {
