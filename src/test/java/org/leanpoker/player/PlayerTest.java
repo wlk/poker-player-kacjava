@@ -26,15 +26,27 @@ public class PlayerTest {
     }
 
     @Test
-    public void testParseJson() throws Exception {
+    public void testMinimalRaiseJson() throws Exception {
+        GameStateDto game = readGameStateFromSampleJson();
+
+        assertThat(game.getMinimumRaise()).isEqualTo(240);
+    }
+
+    @Test
+    public void testParsePlayerAndPlayerCardsJson() throws Exception {
+        GameStateDto game = readGameStateFromSampleJson();
+
+        assertThat(game.getPlayer()).isPresent();
+        assertThat(game.getPlayerCards()).hasSize(2);
+        assertThat(game.getPlayerCards().get(0).getRank()).isEqualTo("6");
+        assertThat(game.getPlayerCards().get(0).getSuit()).isEqualTo("hearts");
+    }
+
+    private GameStateDto readGameStateFromSampleJson() {
         InputStream stream = getClass().getClassLoader().getResourceAsStream("sample.json");
         InputStreamReader reader = new InputStreamReader(stream);
         JsonElement jsonElement = new JsonParser().parse(reader);
-        GameStateDto game = new Gson().fromJson(jsonElement, GameStateDto.class);
-
-        assertThat(game.getMinimumRaise()).isEqualTo(240);
-        assertThat(game.getPlayer()).isPresent();
-        assertThat(game.getPlayerCards()).hasSize(2);
+        return new Gson().fromJson(jsonElement, GameStateDto.class);
     }
 
 }
