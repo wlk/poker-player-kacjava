@@ -4,18 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
+import com.codepoetics.protonpack.StreamUtils;
 import org.leanpoker.player.dto.CardRank;
 import org.leanpoker.player.dto.HoldCard;
 
 public enum Variant {
     ROYAL,
-    STRAIGHT_FLUSH{
-        @Override
-        boolean match(List<HoldCard> cards) {
-        	 return false;
-        }
-    },
+    STRAIGHT_FLUSH,
     FOUR{
         @Override
         boolean match(List<HoldCard> cards) {
@@ -64,6 +61,12 @@ public enum Variant {
             if (numberedCards.isEmpty()){
                 return false;
             }
+            Stream<List<Integer>> windowed = StreamUtils.windowed(numberedCards.stream(), 5);
+            return windowed.anyMatch(this::isStreight);
+
+        }
+
+        private boolean isStreight(List<Integer> numberedCards) {
             Integer first = numberedCards.iterator().next();
             return IntStream.range(first, first+5)
                     .allMatch(numberedCards::contains);
