@@ -13,8 +13,30 @@ public enum Variant {
 //    FULL,
 //    COLOR,
 //    STAIGHT,
-//    THREE,
-//    TWO,
+    THREE {
+    @Override
+    boolean match(List<HoldCard> cards) {
+        return cards.stream()
+                .map(HoldCard::getRank)
+                .collect(Collectors.groupingBy(String::toString))
+                .values().stream()
+                .filter(list -> list.size()>2)
+                .findFirst()
+                .isPresent();
+    }
+},
+    TWO {
+//    @Override
+//    boolean match(List<HoldCard> cards) {
+//        return cards.stream()
+//                .map(HoldCard::getRank)
+//                .collect(Collectors.groupingBy(String::toString))
+//                .values().stream()
+//                .filter(list -> list.size()>2)
+//                .findFirst()
+//                .isPresent();
+//    }
+},
     PAIR {
         @Override
         boolean match(List<HoldCard> cards) {
@@ -34,7 +56,9 @@ public enum Variant {
         }
     };
 
-    abstract boolean match(List<HoldCard> cards);
+    boolean match(List<HoldCard> cards){
+        return false;
+    };
 
     public static Variant regognize(List<HoldCard> cards){
         return Arrays.stream(values())

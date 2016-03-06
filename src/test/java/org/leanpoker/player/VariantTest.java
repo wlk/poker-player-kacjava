@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.leanpoker.player.Variant.NONE;
-import static org.leanpoker.player.Variant.PAIR;
+import static org.leanpoker.player.Variant.*;
 
 public class VariantTest {
 
@@ -21,10 +20,17 @@ public class VariantTest {
     }
 
     @Test
-    public void shouldRecognizeThree() throws Exception {
+    public void shouldRecognizeNone() throws Exception {
         List<HoldCard> cards = cards("1", "2", "3");
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(NONE);
+    }
+
+    @Test
+    public void shouldRecognizeThree() throws Exception {
+        List<HoldCard> cards = cards("1", "1", "1", "2");
+        Variant variant = Variant.regognize(cards);
+        assertThat(variant).isEqualTo(THREE);
     }
 
     private List<HoldCard> cards(String ... ranks) {
