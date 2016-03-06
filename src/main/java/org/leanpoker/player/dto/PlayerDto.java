@@ -1,5 +1,9 @@
 package org.leanpoker.player.dto;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class PlayerDto {
 
     private Integer id;
@@ -8,6 +12,8 @@ public class PlayerDto {
     private String status;
     private Integer bet;
     private String version;
+    @SerializedName("hole_cards")
+    private List<HoldCard> holeCards;
 
     public Integer getId() {
         return id;
@@ -49,5 +55,12 @@ public class PlayerDto {
     }
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public List<HoldCard> getHoleCards() {
+        return holeCards;
+    }
+    public void setHoleCards(List<HoldCard> holeCards) {
+        this.holeCards = holeCards;
     }
 }
