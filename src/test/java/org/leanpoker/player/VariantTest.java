@@ -14,30 +14,37 @@ public class VariantTest {
 
     @Test
     public void shouldRecognizePair() throws Exception {
-        List<HoldCard> cards = cards("1", "0", "1");
+        List<HoldCard> cards = cards("5", "6", "5");
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(PAIR);
     }
 
     @Test
     public void shouldRecognizeNone() throws Exception {
-        List<HoldCard> cards = cards("1", "2", "3");
+        List<HoldCard> cards = cards("5", "2", "3");
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(NONE);
     }
 
     @Test
     public void shouldRecognizeThree() throws Exception {
-        List<HoldCard> cards = cards("1", "1", "1", "2");
+        List<HoldCard> cards = cards("5", "5", "5", "2");
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(THREE);
     }
 
     @Test
     public void shouldRecognizeTwo() throws Exception {
-        List<HoldCard> cards = cards("1", "1", "2", "2");
+        List<HoldCard> cards = cards("5", "5", "2", "2");
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(TWO);
+    }
+
+    @Test
+    public void shouldRecognizeStraight() throws Exception {
+        List<HoldCard> cards = cards("8", "9", "Q", "J", "J", "10");
+        Variant variant = Variant.regognize(cards);
+        assertThat(variant).isEqualTo(STRAIGHT);
     }
 
     private List<HoldCard> cards(String ... ranks) {
