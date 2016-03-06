@@ -11,15 +11,7 @@ import java.util.stream.Collectors;
  */
 public class Strategy1 implements Strategy{
 
-
-	public int run(Optional<GameStateDto> gameStateDto) {
-
-
-		if (!gameStateDto.isPresent()) {
-			return 300;
-		}
-
-		GameStateDto state = gameStateDto.get();
+	public int run(GameStateDto state) {
 
 		if(isBlindPart(state)) {
 			if(containsParisOnHand(state)) {

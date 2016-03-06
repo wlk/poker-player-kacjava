@@ -33,6 +33,13 @@ public class VariantTest {
         assertThat(variant).isEqualTo(THREE);
     }
 
+    @Test
+    public void shouldRecognizeTwo() throws Exception {
+        List<HoldCard> cards = cards("1", "1", "2", "2");
+        Variant variant = Variant.regognize(cards);
+        assertThat(variant).isEqualTo(TWO);
+    }
+
     private List<HoldCard> cards(String ... ranks) {
         return Arrays.stream(ranks)
                 .map(HoldCard::new)

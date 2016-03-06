@@ -9,5 +9,5 @@ import java.util.Optional;
  */
 public interface Strategy {
 
-	int run(Optional<GameStateDto> gameStateDto);
+	int run(GameStateDto gameStateDto);
 }
