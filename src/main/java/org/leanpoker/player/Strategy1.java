@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  */
 public class Strategy1 implements Strategy{
 
-
 	public int run(GameStateDto state) {
 
 		if(isBlindPart(state)) {
