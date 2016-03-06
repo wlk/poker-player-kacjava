@@ -6,7 +6,7 @@ import org.leanpoker.player.dto.HoldCard;
 
 import java.util.List;
 
-public class Strategy9 implements Strategy{
+public class Strategy10 implements Strategy{
 
 	public int run(GameStateDto state) {
 		int minToBet = state.getCurrentBuyIn() - state.getPlayer().get().getBet() + state.getMinimumRaise();
