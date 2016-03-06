@@ -18,9 +18,9 @@ public class Player {
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
-                .filter(game -> game.getMinimumRaise()>0)
+//                .filter(game -> game.getMinimumRaise()>0)
                 .map(strategy::run)
-                .orElse(300);
+                .orElse(3);
 	}
 
     private static Optional<GameStateDto> parseJson(JsonElement request) {
