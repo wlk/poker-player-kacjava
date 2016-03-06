@@ -22,9 +22,9 @@ public class Strategy11 implements Strategy{
 
 		// tylko karty z ręki
 		if(isBlindPart(state)) {
-			if (state.getBetIndex() >= 3){
-				return check;
-			}
+//			if (state.getBetIndex() >= 3){
+//				return check;
+//			}
 			if(variant == Variant.HIGH_PAIR) {
 				//para na ręce
 				return minToBet;
