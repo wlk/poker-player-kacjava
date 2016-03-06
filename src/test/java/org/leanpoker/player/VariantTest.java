@@ -6,7 +6,6 @@ import org.leanpoker.player.dto.HoldCard;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.PrimitiveIterator;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -52,10 +51,9 @@ public class VariantTest {
     
     @Test
     public void shouldRecognizeFull() throws Exception {
-    	assertThat(Variant.recognize(cards("3", "3", "1", "1", "1", "10"))).isEqualTo(FULL);
-    	assertThat(Variant.recognize(cards("3", "3", "1", "1", "1", "3"))).isEqualTo(FULL);
-    	assertThat(Variant.recognize(cards("3", "3", "1", "1", "1", "1"))).isEqualTo(FULL);
-    	assertThat(Variant.recognize(cards("3", "3", "1", "1", "2", "10"))).isNotEqualTo(FULL);
+    	assertThat(Variant.recognize(cards("3", "3", "4", "4", "4", "10"))).isEqualTo(FULL);
+    	assertThat(Variant.recognize(cards("3", "3", "4", "4", "4", "3"))).isEqualTo(FULL);
+    	assertThat(Variant.recognize(cards("3", "3", "4", "4", "2", "10"))).isNotEqualTo(FULL);
     }
 
     @Test
