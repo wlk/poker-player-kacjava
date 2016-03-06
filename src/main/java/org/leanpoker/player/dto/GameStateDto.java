@@ -16,6 +16,8 @@ public class GameStateDto {
     private int currentBuyIn;
 
     private List<PlayerDto> players;
+    @SerializedName("community_cards")
+    private List<HoldCard> communityCards;
 
     public int getMinimumRaise() {
         return minimumRaise;
@@ -43,5 +45,12 @@ public class GameStateDto {
     }
     public void setPlayers(List<PlayerDto> players) {
         this.players = players;
+    }
+
+    public List<HoldCard> getCommunityCards() {
+        return communityCards;
+    }
+    public void setCommunityCards(List<HoldCard> communityCards) {
+        this.communityCards = communityCards;
     }
 }
