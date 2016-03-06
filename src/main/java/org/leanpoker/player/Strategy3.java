@@ -1,11 +1,11 @@
 package org.leanpoker.player;
 
-import org.leanpoker.player.dto.GameStateDto;
-import org.leanpoker.player.dto.HoldCard;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.leanpoker.player.dto.GameStateDto;
+import org.leanpoker.player.dto.HoldCard;
 
 /**
  * @author Paweł Bilewicz

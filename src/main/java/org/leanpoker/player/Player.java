@@ -1,10 +1,11 @@
 package org.leanpoker.player;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import java.util.Optional;
+
 import org.leanpoker.player.dto.GameStateDto;
 
-import java.util.Optional;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 public class Player {
 
