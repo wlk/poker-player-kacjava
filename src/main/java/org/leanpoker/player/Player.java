@@ -8,17 +8,18 @@ import java.util.Optional;
 
 public class Player {
 
-	static final String VERSION = "KacJava-" + 2;
+	static final String VERSION = "KacJava-" + 3;
 
     private static Gson gson = new Gson();
 
 	public static int betRequest(JsonElement request) {
 
-        Optional<GameStateDto> dtoOption = parseJson(request);
-        return dtoOption
-                .filter(game -> game.getMinimumRaise()>0)
-                .map(Player::bet)
-                .orElse(300);
+//        Optional<GameStateDto> dtoOption = parseJson(request);
+//        return dtoOption
+//                .filter(game -> game.getMinimumRaise()>0)
+//                .map(Player::bet)
+//                .orElse(300);
+		return new ExceptionCatcherStrategy(new Strategy1()).run(parseJson(request));
 	}
 
     public static int bet(GameStateDto game){
