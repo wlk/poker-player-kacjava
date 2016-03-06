@@ -19,7 +19,7 @@ public class ExceptionCatcherStrategy implements Strategy {
 		try{
 			return strategy.run(gameStateDto);
 		} catch (Exception e) {
-			return 300;
+			return new StrategyDefault().run(gameStateDto);
 		}
 	}
 }
