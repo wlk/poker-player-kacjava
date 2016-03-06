@@ -15,7 +15,10 @@ public class Player {
 	public static int betRequest(JsonElement request) {
 
         Optional<GameStateDto> dtoOption = parseJson(request);
-        return dtoOption.map(Player::bet).orElse(300);
+        return dtoOption
+                .filter(game -> game.getMinimumRaise()>0)
+                .map(Player::bet)
+                .orElse(300);
 	}
 
     public static int bet(GameStateDto game){

@@ -21,7 +21,7 @@ public class PlayerTest {
 
         int betRequest = Player.betRequest(jsonElement);
 
-        assertThat(betRequest).isEqualTo(1000);
+        assertThat(betRequest).isEqualTo(300);
 
     }
 
