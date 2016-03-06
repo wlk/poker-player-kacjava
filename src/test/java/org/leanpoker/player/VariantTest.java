@@ -4,8 +4,11 @@ import org.junit.Test;
 import org.leanpoker.player.dto.HoldCard;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.PrimitiveIterator;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.leanpoker.player.Variant.*;
@@ -56,13 +59,17 @@ public class VariantTest {
 
     private List<HoldCard> cards(String ... ranks) {
         return Arrays.stream(ranks)
-                .map(rank -> new HoldCard(rank, "clubs"))
+                .map(rank -> new HoldCard(rank, rank))
                 .collect(Collectors.toList());
     }
 
     private List<HoldCard> cardsColors(String ... colors) {
+        Iterator<String> it = IntStream
+                .range(0, colors.length)
+                .mapToObj(String::valueOf)
+                .iterator();
         return Arrays.stream(colors)
-                .map(color -> new HoldCard("2", color))
+                .map(color -> new HoldCard(it.next(), color))
                 .collect(Collectors.toList());
     }
 }
