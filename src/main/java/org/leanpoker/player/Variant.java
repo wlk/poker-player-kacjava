@@ -26,16 +26,15 @@ public enum Variant {
     }
 },
     TWO {
-//    @Override
-//    boolean match(List<HoldCard> cards) {
-//        return cards.stream()
-//                .map(HoldCard::getRank)
-//                .collect(Collectors.groupingBy(String::toString))
-//                .values().stream()
-//                .filter(list -> list.size()>2)
-//                .findFirst()
-//                .isPresent();
-//    }
+    @Override
+    boolean match(List<HoldCard> cards) {
+        return cards.stream()
+                .map(HoldCard::getRank)
+                .collect(Collectors.groupingBy(String::toString))
+                .values().stream()
+                .filter(list -> list.size()>1)
+                .count() > 1;
+    }
 },
     PAIR {
         @Override
@@ -58,7 +57,7 @@ public enum Variant {
 
     boolean match(List<HoldCard> cards){
         return false;
-    };
+    }
 
     public static Variant regognize(List<HoldCard> cards){
         return Arrays.stream(values())
