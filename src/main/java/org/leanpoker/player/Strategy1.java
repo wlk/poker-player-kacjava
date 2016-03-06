@@ -50,7 +50,7 @@ public class Strategy1 implements Strategy{
 	}
 
 	private static boolean isBlindPart(GameStateDto state) {
-		return state.getCommunityCards().isEmpty();
+		return state.getCommunityCards()!=null && state.getCommunityCards().isEmpty();
 	}
 
 	private static boolean containsParisOnHand(GameStateDto state) {
