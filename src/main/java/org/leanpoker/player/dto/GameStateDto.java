@@ -21,6 +21,12 @@ public class GameStateDto {
     @SerializedName("community_cards")
     private List<HoldCard> communityCards;
 
+    public long countActivePlayers() {
+        return players.stream()
+                .filter(p -> p.getStatus().equals("active"))
+                .count();
+    }
+
     public Optional<PlayerDto> getPlayer() {
         return players.stream()
                 .filter(p -> p.getHoleCards() != null && p.getHoleCards().size() > 0)
