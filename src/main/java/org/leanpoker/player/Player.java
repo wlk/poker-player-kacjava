@@ -9,7 +9,7 @@ import com.google.gson.JsonElement;
 
 public class Player {
 
-	static final String VERSION = "KacJava-s" + 8;
+	static final String VERSION = "KacJava-s" + "8.1";
 
     private static Gson gson = new Gson();
 

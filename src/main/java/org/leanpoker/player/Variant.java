@@ -92,6 +92,20 @@ public enum Variant {
                 .count() >= 2;
     }
 },
+    HIGH_PAIR {
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getRank)
+                    .map(CardRank::findByValue)
+                    .filter(rank -> rank.ordinal() > CardRank.CARD_10.ordinal())
+                    .collect(Collectors.groupingBy(CardRank::name))
+                    .values().stream()
+                    .filter(list -> list.size()>=2)
+                    .findFirst()
+                    .isPresent();
+        }
+    },
     PAIR {
         @Override
         boolean match(List<HoldCard> cards) {
