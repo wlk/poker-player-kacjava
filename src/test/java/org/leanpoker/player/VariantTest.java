@@ -47,9 +47,22 @@ public class VariantTest {
         assertThat(variant).isEqualTo(STRAIGHT);
     }
 
+    @Test
+    public void shouldRecognizeColor() throws Exception {
+        List<HoldCard> cards = cardsColors("clubs", "clubs", "other", "clubs", "clubs", "clubs");
+        Variant variant = Variant.regognize(cards);
+        assertThat(variant).isEqualTo(COLOR);
+    }
+
     private List<HoldCard> cards(String ... ranks) {
         return Arrays.stream(ranks)
-                .map(HoldCard::new)
+                .map(rank -> new HoldCard(rank, "clubs"))
+                .collect(Collectors.toList());
+    }
+
+    private List<HoldCard> cardsColors(String ... colors) {
+        return Arrays.stream(colors)
+                .map(color -> new HoldCard("2", color))
                 .collect(Collectors.toList());
     }
 }

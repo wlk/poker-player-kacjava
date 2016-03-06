@@ -13,7 +13,18 @@ public enum Variant {
     STRAIGHT_FLUSH,
     FOUR,
     FULL,
-    COLOR,
+    COLOR{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getSuit)
+                    .collect(Collectors.groupingBy(String::toString))
+                    .values().stream()
+                    .filter(list -> list.size()==5)
+                    .findFirst()
+                    .isPresent();
+        }
+    },
     STRAIGHT{
         @Override
         boolean match(List<HoldCard> cards) {
