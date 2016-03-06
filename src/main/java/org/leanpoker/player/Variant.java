@@ -11,9 +11,31 @@ import java.util.stream.IntStream;
 public enum Variant {
     ROYAL,
     STRAIGHT_FLUSH,
-    FOUR,
+    FOUR{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getRank)
+                    .collect(Collectors.groupingBy(String::toString))
+                    .values().stream()
+                    .filter(list -> list.size()>=4)
+                    .findFirst()
+                    .isPresent();
+        }
+    },
     FULL,
-    COLOR,
+    COLOR{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getSuit)
+                    .collect(Collectors.groupingBy(String::toString))
+                    .values().stream()
+                    .filter(list -> list.size()>=5)
+                    .findFirst()
+                    .isPresent();
+        }
+    },
     STRAIGHT{
         @Override
         boolean match(List<HoldCard> cards) {
@@ -28,7 +50,7 @@ public enum Variant {
                 return false;
             }
             Integer first = numberedCards.iterator().next();
-            return IntStream.rangeClosed(first, first+4)
+            return IntStream.range(first, first+5)
                     .allMatch(numberedCards::contains);
         }
     },
@@ -39,7 +61,7 @@ public enum Variant {
                 .map(HoldCard::getRank)
                 .collect(Collectors.groupingBy(String::toString))
                 .values().stream()
-                .filter(list -> list.size()>2)
+                .filter(list -> list.size()>=3)
                 .findFirst()
                 .isPresent();
     }
@@ -51,8 +73,8 @@ public enum Variant {
                 .map(HoldCard::getRank)
                 .collect(Collectors.groupingBy(String::toString))
                 .values().stream()
-                .filter(list -> list.size()>1)
-                .count() > 1;
+                .filter(list -> list.size()>=2)
+                .count() >= 2;
     }
 },
     PAIR {
@@ -62,7 +84,7 @@ public enum Variant {
                     .map(HoldCard::getRank)
                     .collect(Collectors.groupingBy(String::toString))
                     .values().stream()
-                    .filter(list -> list.size()>1)
+                    .filter(list -> list.size()>=2)
                     .findFirst()
                     .isPresent();
         }
