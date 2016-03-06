@@ -33,7 +33,8 @@ public class PlayerTest {
         GameStateDto game = new Gson().fromJson(jsonElement, GameStateDto.class);
 
         assertThat(game.getMinimumRaise()).isEqualTo(240);
-        
+        assertThat(game.getPlayer()).isPresent();
+        assertThat(game.getPlayerCards()).hasSize(2);
     }
 
 }
