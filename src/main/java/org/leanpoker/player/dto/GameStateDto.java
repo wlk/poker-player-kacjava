@@ -19,7 +19,7 @@ public class GameStateDto {
 
     private List<PlayerDto> players;
     @SerializedName("community_cards")
-    private List<HoldCard> communityCards;
+    private List<HoldCard> communityCards = new ArrayList<>();
 
     public Optional<PlayerDto> getPlayer() {
         return players.stream()
@@ -31,6 +31,12 @@ public class GameStateDto {
         return getPlayer()
                 .map(PlayerDto::getHoleCards)
                 .orElseGet(ArrayList::new);
+    }
+    
+    public List<HoldCard> getAllCards(){
+    	List<HoldCard> allCards = getPlayerCards();
+    	allCards.addAll(Optional.of(getCommunityCards()).orElseGet(ArrayList::new));
+    	return allCards;
     }
 
     public int getMinimumRaise() {

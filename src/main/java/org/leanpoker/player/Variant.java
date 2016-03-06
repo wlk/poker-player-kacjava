@@ -115,7 +115,7 @@ public enum Variant {
         return false;
     }
 
-    public static Variant regognize(List<HoldCard> cards){
+    public static Variant recognize(List<HoldCard> cards){
         return Arrays.stream(values())
                 .filter(e -> e.match(cards))
                 .findFirst()
