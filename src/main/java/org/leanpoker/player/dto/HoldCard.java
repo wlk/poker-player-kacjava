@@ -3,7 +3,7 @@ package org.leanpoker.player.dto;
 public class HoldCard {
 
     private String rank;
-    private String hearts;
+    private String suit;
 
     public String getRank() {
         return rank;
@@ -12,10 +12,11 @@ public class HoldCard {
         this.rank = rank;
     }
 
-    public String getHearts() {
-        return hearts;
+    public String getSuit() {
+        return suit;
     }
-    public void setHearts(String hearts) {
-        this.hearts = hearts;
+
+    public void setSuit(String suit) {
+        this.suit = suit;
     }
 }
