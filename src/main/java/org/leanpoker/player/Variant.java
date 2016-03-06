@@ -1,10 +1,12 @@
 package org.leanpoker.player;
 
+import org.leanpoker.player.dto.CardRank;
 import org.leanpoker.player.dto.HoldCard;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public enum Variant {
     ROYAL,
@@ -12,7 +14,24 @@ public enum Variant {
     FOUR,
     FULL,
     COLOR,
-    STAIGHT,
+    STRAIGHT{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            List<Integer> numberedCards = cards.stream()
+                    .map(HoldCard::getRank)
+                    .map(CardRank::findByValue)
+                    .map(CardRank::ordinal)
+                    .sorted()
+                    .distinct()
+                    .collect(Collectors.toList());
+            if (numberedCards.isEmpty()){
+                return false;
+            }
+            Integer first = numberedCards.iterator().next();
+            return IntStream.rangeClosed(first, first+4)
+                    .allMatch(numberedCards::contains);
+        }
+    },
     THREE {
     @Override
     boolean match(List<HoldCard> cards) {
