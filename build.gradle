@@ -33,7 +33,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradl	e-tomcat-plugin:1.0'
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
         classpath 'commons-lang:commons-lang:2.6'
         classpath 'com.google.code.gson:gson:2.6.2'
     }
