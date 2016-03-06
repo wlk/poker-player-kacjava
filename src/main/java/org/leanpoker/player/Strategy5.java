@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * @author Paweł Bilewicz
  */
-public class Strategy4 implements Strategy{
+public class Strategy5 implements Strategy{
 
 	public int run(GameStateDto state) {
 
