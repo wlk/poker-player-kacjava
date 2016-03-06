@@ -15,7 +15,7 @@ public class Strategy1 implements Strategy{
 	public int run(Optional<GameStateDto> gameStateDto) {
 
 
-		if (gameStateDto.isPresent()) {
+		if (!gameStateDto.isPresent()) {
 			return 300;
 		}
 
