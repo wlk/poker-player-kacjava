@@ -3,16 +3,29 @@ package org.leanpoker.player;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+import org.leanpoker.player.dto.CardRank;
 import org.leanpoker.player.dto.HoldCard;
 
 public enum Variant {
     ROYAL,
-    STRAIGHT_FLUSH,
-    FOUR{
+    STRAIGHT_FLUSH{
         @Override
         boolean match(List<HoldCard> cards) {
         	 return false;
+        }
+    },
+    FOUR{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getRank)
+                    .collect(Collectors.groupingBy(String::toString))
+                    .values().stream()
+                    .filter(list -> list.size()>=4)
+                    .findFirst()
+                    .isPresent();
         }
     },
     FULL{
@@ -26,11 +39,34 @@ public enum Variant {
         	 return pairsAndThrees.size()>=2 && pairsAndThrees.stream().filter(list -> list.size()>=3).findFirst().isPresent();
         }
     },
-    COLOR,
+    COLOR{
+        @Override
+        boolean match(List<HoldCard> cards) {
+            return cards.stream()
+                    .map(HoldCard::getSuit)
+                    .collect(Collectors.groupingBy(String::toString))
+                    .values().stream()
+                    .filter(list -> list.size()>=5)
+                    .findFirst()
+                    .isPresent();
+        }
+    },
     STRAIGHT{
         @Override
         boolean match(List<HoldCard> cards) {
-        	 return false;
+            List<Integer> numberedCards = cards.stream()
+                    .map(HoldCard::getRank)
+                    .map(CardRank::findByValue)
+                    .map(CardRank::ordinal)
+                    .sorted()
+                    .distinct()
+                    .collect(Collectors.toList());
+            if (numberedCards.isEmpty()){
+                return false;
+            }
+            Integer first = numberedCards.iterator().next();
+            return IntStream.range(first, first+5)
+                    .allMatch(numberedCards::contains);
         }
     },
     THREE {
@@ -40,7 +76,7 @@ public enum Variant {
                 .map(HoldCard::getRank)
                 .collect(Collectors.groupingBy(String::toString))
                 .values().stream()
-                .filter(list -> list.size()>2)
+                .filter(list -> list.size()>=3)
                 .findFirst()
                 .isPresent();
     }
@@ -52,8 +88,8 @@ public enum Variant {
                 .map(HoldCard::getRank)
                 .collect(Collectors.groupingBy(String::toString))
                 .values().stream()
-                .filter(list -> list.size()>1)
-                .count() > 1;
+                .filter(list -> list.size()>=2)
+                .count() >= 2;
     }
 },
     PAIR {
@@ -63,7 +99,7 @@ public enum Variant {
                     .map(HoldCard::getRank)
                     .collect(Collectors.groupingBy(String::toString))
                     .values().stream()
-                    .filter(list -> list.size()>1)
+                    .filter(list -> list.size()>=2)
                     .findFirst()
                     .isPresent();
         }

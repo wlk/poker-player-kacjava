@@ -1,20 +1,21 @@
 package org.leanpoker.player;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import java.util.Optional;
+
 import org.leanpoker.player.dto.GameStateDto;
 
-import java.util.Optional;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 public class Player {
 
-	static final String VERSION = "KacJava-" + 6;
+	static final String VERSION = "KacJava-s" + 3;
 
     private static Gson gson = new Gson();
 
 	public static int betRequest(JsonElement request) {
 
-        Strategy strategy = new ExceptionCatcherStrategy(new Strategy1());
+        Strategy strategy = new ExceptionCatcherStrategy(new Strategy3());
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
