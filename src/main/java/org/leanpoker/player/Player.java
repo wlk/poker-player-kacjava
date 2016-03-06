@@ -25,6 +25,8 @@ public class Player {
         return game.getMinimumRaise();
     }
 
+
+
     private static Optional<GameStateDto> parseJson(JsonElement request) {
         try {
             return Optional.of(gson.fromJson(request, GameStateDto.class));
