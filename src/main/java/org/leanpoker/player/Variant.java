@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum Variant {
-//    ROYAL,
-//    STRAIGHT_FLUSH,
-//    FOUR,
-//    FULL,
-//    COLOR,
-//    STAIGHT,
+    ROYAL,
+    STRAIGHT_FLUSH,
+    FOUR,
+    FULL,
+    COLOR,
+    STAIGHT,
     THREE {
     @Override
     boolean match(List<HoldCard> cards) {
