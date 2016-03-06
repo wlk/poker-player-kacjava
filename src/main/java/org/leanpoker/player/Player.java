@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public class Player {
 
-	static final String VERSION = "KacJava-s" + 3;
+	static final String VERSION = "KacJava-s" + 4;
 
     private static Gson gson = new Gson();
 
 	public static int betRequest(JsonElement request) {
 
-        Strategy strategy = new ExceptionCatcherStrategy(new Strategy3());
+        Strategy strategy = new ExceptionCatcherStrategy(new Strategy4());
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
