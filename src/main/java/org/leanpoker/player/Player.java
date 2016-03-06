@@ -9,13 +9,13 @@ import com.google.gson.JsonElement;
 
 public class Player {
 
-	static final String VERSION = "KacJava-s" + "8.1";
+	static final String VERSION = "KacJava-s" + "9";
 
     private static Gson gson = new Gson();
 
 	public static int betRequest(JsonElement request) {
 
-        Strategy strategy = new ExceptionCatcherStrategy(new Strategy8());
+        Strategy strategy = new ExceptionCatcherStrategy(new Strategy9());
 
         Optional<GameStateDto> dtoOption = parseJson(request);
         return dtoOption
