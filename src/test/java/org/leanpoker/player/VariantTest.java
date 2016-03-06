@@ -46,6 +46,14 @@ public class VariantTest {
         Variant variant = Variant.regognize(cards);
         assertThat(variant).isEqualTo(STRAIGHT);
     }
+    
+    @Test
+    public void shouldRecognizeFull() throws Exception {
+    	assertThat(Variant.regognize(cards("3", "3", "1", "1", "1", "10"))).isEqualTo(FULL);
+    	assertThat(Variant.regognize(cards("3", "3", "1", "1", "1", "3"))).isEqualTo(FULL);
+    	assertThat(Variant.regognize(cards("3", "3", "1", "1", "1", "1"))).isEqualTo(FULL);
+    	assertThat(Variant.regognize(cards("3", "3", "1", "1", "2", "10"))).isNotEqualTo(FULL);
+    }
 
     private List<HoldCard> cards(String ... ranks) {
         return Arrays.stream(ranks)
